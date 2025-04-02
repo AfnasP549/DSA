@@ -24,12 +24,12 @@ class LinkedList{
     }
   }
 }
- void main(){
-    List<int>arr =[1,2,3,4,5,6,7,8,9];
+   void main(){
 
-    LinkedList linkedList= LinkedList();
+     List<int>arr =[1,2,3,4,5,6,7,8,9];
+    LinkedList obj= LinkedList();
     for(int element in arr){
-      linkedList.addNode(element);
+      obj.addNode(element);
     }
-    linkedList.display();
+    obj.display();
   }

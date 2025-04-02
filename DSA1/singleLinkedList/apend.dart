@@ -15,6 +15,22 @@ class LinkedList{
     }
     tail=newnode;
   }
+
+  //!reverse
+   void reverse() {
+    Node? current = head;
+    Node? prev = null;
+    Node? next = null;
+
+    while (current != null) {
+      next = current.next; // Save the next node
+      current.next = prev; // Reverse the pointer
+      prev = current;      // Move prev forward
+      current = next;      // Move current forward
+    }
+
+    head = prev; // Update the head to the new head (last node in original list)
+  }
   display(){
     Node? current=head;
     while(current!=null){

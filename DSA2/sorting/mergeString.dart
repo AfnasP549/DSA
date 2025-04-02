@@ -14,7 +14,7 @@ mergeSort(List<String>arr){
   while(i<left.length && j<right.length){
     if(left[i].compareTo(right[j]) < 0){
       result.add(left[i]);
-      i++;
+      i++; 
     }else{
       result.add(right[j]);
       j++;

@@ -1,28 +1,23 @@
-bool isPrimeHelper(int n, int i) {
-  if (i == 1) {
-    return true;
+bool isPrime(int n, int divisor){
+ if(n<2){
+  return false;
+ }
+ if(divisor==1){
+  return true;
+ }
+ if(n % divisor == 0){
+  return false;
+ }
+ return isPrime(n, divisor-1);
+}
+void main(){
+  int num = 10;
+  if(isPrime(num, num-1)){
+    print('$num is prime');
+  }else{
+    print('$num is not prime');
   }
-
-  if (n % i == 0) {
-    return false;
-  }
-
-  return isPrimeHelper(n, i - 1);
 }
 
-bool isPrime(int n) {
-  if (n <= 1) {
-    return false;
-  }
-
-  return isPrimeHelper(n, n - 1);
-}
-
-void main() {
-  int number = 13;
-  if (isPrime(number)) {
-    print('$number is a prime number.');
-  } else {
-    print('$number is not a prime number.');
-  }
-}
+  
+  

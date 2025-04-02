@@ -309,3 +309,68 @@
 // obj.display();
 // }
 
+class Stack{
+  List<int>stack=[];
+  late int top;
+  late int size;
+  
+  Stack(this.size){
+    stack = List.filled(size, 0, growable: false);
+    top=-1;
+  }
+
+  isFull(){
+    return top == size-1;
+  }
+
+  isEmpty(){
+    return top==-1;
+  }
+
+  push(int value){
+    if(isFull()){
+    return  print('stack is full');
+    }
+    top++;
+    stack[top]=value;
+    print('$value is added');
+  }
+
+  pop(){
+    if(isEmpty()){
+      return print('stack is empty');
+    }
+    int value = stack[top];
+    top--;
+    print('$value removerd from stack');
+  }
+
+  peek(){
+    if(isEmpty()){
+      print('No values') ;
+    }else{
+      print('${stack[top]} is the top');
+    }
+  }
+
+
+
+  
+}
+
+void main(){
+  Stack obj = Stack(5);
+  obj.push(10);
+  obj.push(20);
+  obj.push(30);
+  obj.push(40);
+  obj.push(50);
+  obj.push(60);
+
+  obj.peek();
+
+
+print('delete');
+  obj.pop();
+  obj.peek();
+}

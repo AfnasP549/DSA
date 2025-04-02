@@ -1,6 +1,6 @@
 linearSearch(List<int>arr, int target, int index){
   if(index>=arr.length){
-    return -1;
+    return 0;
   }
   if(arr[index]==target){
     return index;
@@ -8,12 +8,14 @@ linearSearch(List<int>arr, int target, int index){
   return linearSearch(arr, target, index+1);
 }
 void main(){
-  List<int>arr= [1,23,4,5,6,7,];
-  int target=5;
-  int result= linearSearch(arr, target, 0);
-  if(result!= -1){
-    print('at index ${result}');
-  }else{
-    print('target is not found');
+  List<int>arr=[1,2,3,4,5,6,7,8];
+  int target= 6;
+  int result = linearSearch(arr, target, 0);
+  if(result!=0){
+    print('$target is int $result index');
+  }
+  else{
+    print('$target is not in this list');
   }
 }
+

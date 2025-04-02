@@ -115,7 +115,7 @@ void main(){
 
   print(obj.contains(10));
   print('after delete');
-  obj.delete(20);
+  obj.delete(30);
   obj.Preorder(obj.root);
   
 }

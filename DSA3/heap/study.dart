@@ -1,110 +1,109 @@
-class Heap{
-  List<int>heap=[];
-  int parent(int index) =>(index-1)~/2;
-  int leftchild(int index) => (2*index+1);
-  int rightchild(int index) =>(2*index+2);
-
-  void swap(int i, int j){
-    int temp = heap[i];
-    heap[i] = heap[j];
-    heap[j] = temp;
+class Node{
+  int data;
+  Node?left;
+  Node?right;
+  Node(this.data);
   }
-
-  void printHeap(){
-    print(heap);
-  }
-}
-
-class MinHeap extends Heap{
-  void build(List<int>arr){
-    heap=arr;
-    for(int i=parent(heap.length-1); i>=0; i--){
-      heapifyDown(i);
-    }
-  }
-
-  void insert(int value){
-    heap.add(value);
-    heapifyUp(heap.length-1);
-  }
-
-  void remove(){
-    if(heap.isEmpty){
-      print('List is empty');
-    }
-    heap[0] = heap.removeLast();
-    heapifyDown(0);
-  }
-
-  heapifyUp(int index){
-    while(index >0 && heap[index]< heap[parent(index)] ){
-      swap(index, parent(index));
-      index = parent(index);
-    }
-  }
-
-  heapifyDown(int index){
-    int smallest = index;
-    int left = leftchild(index);
-    int right = rightchild(index);
-
-    if(left<heap.length && heap[left]< heap[smallest]){
-      smallest = left;
-    }
-    if(right<heap.length && heap[right]< heap[smallest]){
-      smallest = right;
+  class BST{
+    Node?root;
+    insert(int value){
+      root = insertNode(root, value);
     }
 
-    if(smallest!=index){
-      swap(index, smallest);
-      heapifyDown(smallest);
+    insertNode(Node?node, int value){
+      if(node==null){
+        return Node(value);
+      }
+      if(value<node.data){
+        node.left = insertNode(node.left, value);
+      }
+      if(value>node.data){
+        node.right = insertNode(node.right, value);
+      }
+      return node;
     }
+
+    delete(int value){
+      root = deleteNode(root , value);
+    }
+    deleteNode(Node?node, int value){
+      if(node==null){
+        return null;
+      }
+      if(value<node.data){
+        node.left = deleteNode(node.left, value);
+      }
+      else if(value>node.data){
+        node.right = deleteNode(node.right, value);
+      }
+      else{
+        if(node.left==null && node.right ==null){
+          return null;
+        }
+        if( node.left==null){
+          return node.right;
+        }else if(node.right==null){
+          return node.left;
+        }
+        Node?findvalue = findMin(node.right);
+        node.data = findvalue!.data;
+        node.right = deleteNode(node.right, findvalue.data);
+      }
+      return node;
+      
+    }
+
+    findMin(Node?node){
+      if(node!.left!=null){
+        node = node.left;
+      }
+      return node;
+    }
+    seclarget(Node?node){
+      if(node==null ||(node.left==null && node.right==null)){
+        return null;
+      }
+      Node?parent;
+      Node?current=node;
+      while(current!.right!=null){
+        parent=current;
+        current= current.right;
+      }
+      if(current.left!=null){
+        return finMax(current.left);
+      }
+      return parent?.data;
+    }
+
+    finMax(Node?node){
+      if(node!.right!=null){
+        node = node.right;
+      }
+      return node;
+    }
+
+
+    preorder(Node?node){
+      if(node==null){
+        return ;
+      }
+      preorder(node.left);
+      print(node.data);
+      preorder(node.right);
+    }
+
   }
 
-  List<int> heapSort(){
-    List<int>sorted=[];
-    while(heap.isNotEmpty){
-      sorted.add(heap.removeAt(0));
-      heapifyDown(0);
-    }
-    return sorted;
-  }
-}
-
-// void main(){
-// MinHeap obj = MinHeap();
-// obj.insert(3);
-// obj.insert(5);
-// obj.insert(2);
-// obj.insert(8);
-// obj.insert(1);
-
-// obj.printHeap();
-
-// print('remove');
-// obj.remove();
-// obj.printHeap();
-
-// print(obj.heapSort());
-
-// }
-
-void main(){
-  MinHeap obj = MinHeap();
-  obj.build([7,8,9,10,23,0]);
-  obj.insert(4);
-  obj.insert(3);
-  obj.insert(6);
-  obj.insert(2);
-  obj.insert(8);
-
-  obj.printHeap();
-  obj.remove();
-  obj.printHeap();
-  print('after sort');
- // obj.heapSort();
-  print(obj.heapSort());
-  //obj.printHeap();
+  void main(){
+    BST obj = BST();
+    obj.insert(10);
+    obj.insert(20);
+    obj.insert(30);
+    obj.insert(40);
+    obj.insert(50);
 
 
-}
+obj.delete(20);
+    obj.preorder(obj.root);
+    print(obj.seclarget(obj.root));
+      }

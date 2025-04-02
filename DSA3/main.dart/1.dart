@@ -20,6 +20,7 @@ class BST{
     }
     return node;
   }
+  
 
  bool contains(int value){
     return search(root, value);
@@ -106,6 +107,18 @@ class BST{
   return parent?.data;
 
 }
+bool isBST(Node? node, [int? min, int? max]) {
+    if (node == null) return true; // An empty tree is a valid BST.
+
+    // Check if the node's value is within the valid range
+    if ((min != null && node.data <= min) || (max != null && node.data >= max)) {
+      return false;
+    }
+
+    // Recursively validate the left and right subtrees
+    return isBST(node.left, min, node.data) && isBST(node.right, node.data,max);
+}
+
 
 
 
@@ -131,6 +144,7 @@ obj.delete(30);
 obj.preorder(obj.root);
 print('search');
 print(obj.contains(50));
+obj.isBST(obj.root);
 //print('min');
 
 // print(obj.findMin(obj.root));

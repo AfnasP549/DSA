@@ -1,15 +1,17 @@
-
-bool ispalinsrome(String s, int start, int end){
+bool isPalindrome(String word, int start, int end){
   if(start>=end){
     return true;
   }
-  if(s[start]!=s[end]){
+  if(word[start]!=word[end]){
     return false;
   }
-  return ispalinsrome(s, start+1, end-1);
+  return isPalindrome(word, start+1, end-1);
 }
 void main(){
-  String s="malayalam";
-  bool result= ispalinsrome(s, 0, s.length-1);
-  print(result);
+  String word = 'arnaa';
+  if(isPalindrome(word, 0, word.length-1)){
+    print('$word is palindrome');
+  }else{
+    print('$word is not palindrome');
+  }
 }

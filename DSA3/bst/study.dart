@@ -51,7 +51,7 @@ class BTS{
     while(node!.left!=null){
       node = node.left;
     }
-    return node.data;
+    return node;
   }
 
 
@@ -109,8 +109,8 @@ void main(){
   obj.insert(50);
   obj.insert(40);
 
-  // obj.delete(30);
-  // obj.preorder(obj.root);
+  obj.delete(30);
+  obj.preorder(obj.root);
   // print(obj.contain(10));
   print('min node');
   print(obj.findMin(obj.root));

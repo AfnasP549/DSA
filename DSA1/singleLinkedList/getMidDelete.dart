@@ -45,5 +45,4 @@ void main(){
   print('new');
   obj.getMidDelete();
 
-  obj.display();
 }

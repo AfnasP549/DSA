@@ -1,4 +1,4 @@
-
+ 
 class Stack{
   late List<int>stack;
   late int top, size;
@@ -44,6 +44,7 @@ void deleteMiddle(){
   while(top> middleIndex){
     tempStack.add(stack[top]);
     pop();
+    }
 
      // Pop the middle element
     print('Middle element ${stack[top]} is removed');
@@ -54,7 +55,7 @@ void deleteMiddle(){
       push(tempStack.removeLast());
     }
 
-  }
+  
 }
 
   peek(){

@@ -1,43 +1,78 @@
 class Node{
   int data;
-  Node?left;
-  Node?right;
+  Node?next;
   Node(this.data);
 }
-class Tree{
-  Node?root;
-  insert(int value){
-    root= insertNode(root, value);
-  }
-  insertNode(Node?node, int value){
-    if(node==null){
-      return Node(value);
+class SLinked{
+  Node? head= null;
+  Node? tail= null;
+  append(int value){
+    Node newnode = Node(value);
+    if(head==null){
+      head= newnode;
     }
-    if(value<node.data){
-      node.left = insertNode(node.left, value);
+    else{
+      tail?.next=newnode;
     }
-    if(value>node.data){
-      node.right= insertNode(node.right, value);
-    }
-    return node;
+    tail=newnode;
   }
 
-  preorder(Node?node){
-    if(node==null)return;
-    print(node.data);
-    preorder(node.left);
-    preorder(node.right);
+  delete(int value){
+    Node? current = head;
+    if(head==null){
+      print('List is empty');
+      return;
+    }
+    if(head?.data==value){
+      head= current?.next;
+    }
+    while(current?.next!=null && current?.next?.data!=value){
+      current = current?.next;
+    }
+    if(current==null){
+      print('value not found');
+    }
+    current?.next=current.next?.next;
+
   }
+
+  display(){
+    Node? current=head;
+    while(current!=null){
+      print(current.data);
+      current=current.next;
+    }
+  }
+
+  reverse(){
+    Node?current=head;
+    Node?next=null;
+    Node?prev=null;
+    while(current!=null){
+      next=current.next;
+      current.next=prev;
+      prev=current;
+      current=next;
+    }
+    head=prev;
+  }
+
 }
+void main(){{
 
-void main(){
-  Tree obj =Tree();
-  obj.insert(30);
-  obj.insert(60);
-  obj.insert(20);
-  obj.insert(10);
-  obj.insert(50);
+  List<int>arr = [43,2,3,5,63,8];
+  SLinked obj = SLinked();
+  for(var element in arr){
+    obj.append(element);
+  }
+  obj.reverse();
+  obj.display();
+  
+  // obj.append(10);
+  // obj.append(20);
+  // obj.append(30);
+  // obj.append(40);
+  // obj.append(50);
 
-  obj.preorder(obj.root);
-
-}
+  // obj.display();
+}}

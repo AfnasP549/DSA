@@ -72,17 +72,17 @@ void main(){
   MinHeap obj = MinHeap();
   obj.build([8,3,5,60,2,6,4,2,1]);
   obj.printHeap();
-  print('after deleting');
-  obj.delete();
-  obj.delete();
-  obj.printHeap();
+  // print('after deleting');
+  // obj.delete();
+  // obj.delete();
+  // obj.printHeap();
   print('after insert');
   obj.insert(100);
   obj.insert(0);
   obj.printHeap();
 
-  print('after sorting');
-  print(obj.heapSort());
+  // print('after sorting');
+  // print(obj.heapSort());
   
 
 }
